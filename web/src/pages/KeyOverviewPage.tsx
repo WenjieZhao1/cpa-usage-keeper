@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApiError, fetchKeyOverview, fetchKeyOverviewRealtime, logout } from '@/lib/api';
+import { formatDateTime } from '@/utils/timezone';
 import type { AuthSessionAPIKeySummary, KeyOverviewTimeRange, OverviewRealtimeBlock, OverviewRealtimeWindow, UsageOverviewResponse } from '@/lib/types';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
@@ -431,7 +432,7 @@ export function KeyOverviewPage({ apiKey, onAuthRequired }: KeyOverviewPageProps
             {lastRefreshedAt && (
               <div className={styles.toolbarMetaRow}>
                 <span className={styles.lastRefreshed}>
-                  {t('usage_stats.last_updated')}: {lastRefreshedAt.toLocaleTimeString()}
+                  {t('usage_stats.last_updated')}: {formatDateTime(lastRefreshedAt)}
                 </span>
               </div>
             )}

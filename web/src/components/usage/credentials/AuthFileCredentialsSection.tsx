@@ -1,3 +1,4 @@
+import { formatDateTime } from '@/utils/timezone';
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
@@ -746,7 +747,7 @@ export function formatInspectionCompletedAt(value: string | undefined): string {
   if (Number.isNaN(date.getTime())) {
     return ''
   }
-  return date.toLocaleString()
+  return formatDateTime(date)
 }
 
 function formatInspectionDate(value: string | undefined): string {

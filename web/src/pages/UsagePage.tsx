@@ -1,3 +1,4 @@
+import { formatDateTime } from '@/utils/timezone';
 import { useState, useMemo, useCallback, useEffect, useRef, type KeyboardEvent, type SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApiError, fetchAnalysis, fetchCpaApiKeyOptions, fetchCpaApiKeySettings, fetchStatus, fetchUpdateCheck, fetchUsageEventModelFilterOptions, fetchUsageEventSourceFilterOptions, fetchUsageEvents, logout, markStatusActive, updateCpaApiKeyAlias } from '@/lib/api';
@@ -1593,7 +1594,7 @@ export function UsagePage({ onAuthRequired }: { onAuthRequired?: () => void }) {
               <div className={styles.toolbarMetaRow}>
                 {lastSyncAt && (
                   <span className={styles.lastRefreshed}>
-                    {t('usage_stats.last_updated')}: {lastSyncAt.toLocaleTimeString()}
+                    {t('usage_stats.last_updated')}: {formatDateTime(lastSyncAt)}
                   </span>
                 )}
                 {cpaManagementURL && (

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import type { ServiceHealthData, StatusBlockDetail } from '@/utils/usage';
 import type { UsageOverviewPayload } from './hooks/useUsageData';
 import styles from '@/pages/UsagePage.module.scss';
+import { formatDateTime as formatDisplayDateTime } from '@/utils/timezone';
 
 const COLOR_STOPS = [
   { r: 239, g: 68, b: 68 }, // #ef4444
@@ -41,12 +42,7 @@ function rateToColor(rate: number): string {
 }
 
 function formatDateTime(timestamp: number): string {
-  const date = new Date(timestamp);
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const h = date.getHours().toString().padStart(2, '0');
-  const m = date.getMinutes().toString().padStart(2, '0');
-  return `${month}/${day} ${h}:${m}`;
+  return formatDisplayDateTime(timestamp, { dateStyle: undefined, timeStyle: undefined, month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
 }
 
 export function parseTime(value?: string): number {
